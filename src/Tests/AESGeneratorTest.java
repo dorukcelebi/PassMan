@@ -1,19 +1,25 @@
 package Tests;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import PassMan.AESGenerator;
+import junit.framework.TestCase;
 
-public class AESGeneratorTest {
+public class AESGeneratorTest extends TestCase {
+
+	public void caninstantitateAESGenerator() {
+		AESGenerator aes = new AESGenerator();
+		assertNotNull(aes);
+	}
 
 	@Test
-	public void testEncryption(){
+	public void testEncryption() throws Exception {
 		AESGenerator enc = new AESGenerator();
-		
+
 		String testString = "testpass";
 		byte[] encryptedPass = enc.encrypt(testString);
 
-		assertArrayEquals(testString, enc.decrypt(encryptedPass));
+		assertEquals(testString, enc.decrypt(encryptedPass));
 	}
+
+}
